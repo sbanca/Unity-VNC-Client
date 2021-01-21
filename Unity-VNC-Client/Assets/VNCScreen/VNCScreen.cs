@@ -356,9 +356,21 @@ namespace VNCScreen
 
             screenSize = vnc.BufferSize;
 
+            Debug.Log(screenSize);
+
             // Tell the user of this control the necessary info about the desktop in order to setup the display
             // Create a texture
             Texture2D tex = vnc.getTexture();
+
+            tex.filterMode = FilterMode.Trilinear;
+            tex.mipMapBias = -0.7f;
+
+            tex.Apply(true);
+
+            Debug.Log("MipMap Count = " + tex.mipmapCount);
+
+            Debug.Log(tex.width);
+            Debug.Log(tex.height);
 
             if (connectedMaterial == null)
                 connectedMaterial = GetComponent<Renderer>().sharedMaterial;
